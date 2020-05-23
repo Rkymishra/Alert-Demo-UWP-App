@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="Alert.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Alert"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local1="using:Alert.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="896">
+    <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}" Margin="0,10,0,0" >
+        <RelativePanel Margin="0,10,0,0" HorizontalAlignment="Left" Width="886">
+            <ListView Name="RoutineList"
+                  SelectionMode="Extended"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.IsVerticalRailEnabled="True"
+                  ScrollViewer.VerticalScrollMode="Enabled"
+                  ScrollViewer.HorizontalScrollMode="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.IsHorizontalRailEnabled="True"
+                  Margin="20" RenderTransformOrigin="0.482,0.551">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"  >
+                            <TextBlock Text="ID" Padding="10" Margin="8,0" Width="30" Foreground="DarkRed" />
+                            <TextBlock Text="Title" Padding="10" Width="400" Foreground="DarkRed" />
+                            <TextBlock Text="Time" Padding="10" Width="200" Foreground="DarkRed" />
+                            <Button x:Name="btnGetAllList" Click="btnGetAllList_Click">Update</Button>
+                            <Button x:Name="btnAddNewRoutine" Click="btnAddNewRoutine_Add">Add</Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local1:RoutineDetail">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Name="RoutineId"
+                                    Text="{x:Bind RoutineId}"
+                                    Padding="10" Width="30" />
+                            <TextBlock Name="RoutineTitle"
+                                    Text="{x:Bind RoutineTitle}"
+                                    Padding="10" Width="400" />
+                            <TextBlock Text="{x:Bind RoutineScheduleTime}"
+                                   Padding="10" Width="200" />
+                            <Button Click="btnViewDetail" Tag="{Binding RoutineId}">View</Button>
+                            <Button Click="btnDeleteDetail" Tag="{Binding RoutineId}">Delete</Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativePanel>
+    </Grid>
+</Page>
